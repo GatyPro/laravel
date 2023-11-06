@@ -5,24 +5,45 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class BurndownChart
+ *
+ * @property $id
+ * @property $datosSeguimiento_BurdownChart
+ * @property $productOwner
+ * @property $created_at
+ * @property $updated_at
+ *
+ * @property ProductOwner $developer
+ * @package App
+ * @mixin \Illuminate\Database\Eloquent\Builder
+ */
+
 class BurndownChart extends Model
 {
-    use HasFactory;
+    static $rules = [
 
-    protected $fillable = [
-        // Agrega aquí los campos que deseas que sean asignables en masa
+		'datosSeguimiento_BurndownChart' => 'required',
+		'productOwner_id' => 'required',
     ];
 
+    protected $perPage = 20;
+
     /**
-     * Definir la relación de uno a muchos con la clase Sprint.
+     * Attributes that should be mass-assignable.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @var array
      */
-    public function sprints()
+    protected $fillable = ['datosSeguimiento_BurdownChart','productOwner_id'];
+
+     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function productOwner()
     {
-        return $this->hasMany(Sprint::class);
+        return $this->hasOne('App\Models\productOwner', 'id', 'productOwner_id');
     }
-
-    // Puedes agregar más relaciones según sea necesario.
-
 }
+
+
+

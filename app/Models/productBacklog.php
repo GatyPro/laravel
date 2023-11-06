@@ -14,6 +14,12 @@ class ProductBacklog extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
+
+     protected $fillable=[
+        'nombre_productbacklog',
+        'tarea'
+     ];
+
     public function tasks()
     {
         return $this->belongsToMany(Task::class);

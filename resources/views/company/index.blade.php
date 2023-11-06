@@ -35,7 +35,7 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
+
 										<th>Nombre Company</th>
 										<th>Direccion Company</th>
 										<th>Contacto Company</th>
@@ -44,10 +44,10 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($companies as $company)
+                                    @foreach ($companys as $company)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            
+
 											<td>{{ $company->nombre_company }}</td>
 											<td>{{ $company->direccion_company }}</td>
 											<td>{{ $company->contacto_company }}</td>
@@ -68,7 +68,7 @@
                         </div>
                     </div>
                 </div>
-                {!! $companies->links() !!}
+                {!! $companys->links() !!}
             </div>
         </div>
     </div>
