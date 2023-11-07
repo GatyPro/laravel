@@ -2,15 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\company;
+use App\Models\Company;
 use Illuminate\Http\Request;
 
-
-/**
- * Class companyController
- * @package App\Http\Controllers
- */
-class companyController extends Controller
+class CompanyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,7 +15,6 @@ class companyController extends Controller
     public function index()
     {
         $companys = Company::paginate();
-
         return view('company.index', compact('companys'))
             ->with('i', (request()->input('page', 1) - 1) * $companys->perPage());
     }
@@ -44,7 +38,13 @@ class companyController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(Company::$rules);
+        $rules = [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:companys',
+            // Agrega más reglas si es necesario
+        ];
+
+        $request->validate($rules);
 
         $company = Company::create($request->all());
 
@@ -61,7 +61,6 @@ class companyController extends Controller
     public function show($id)
     {
         $company = Company::find($id);
-
         return view('company.show', compact('company'));
     }
 
@@ -74,7 +73,6 @@ class companyController extends Controller
     public function edit($id)
     {
         $company = Company::find($id);
-
         return view('company.edit', compact('company'));
     }
 
@@ -87,7 +85,13 @@ class companyController extends Controller
      */
     public function update(Request $request, Company $company)
     {
-        request()->validate(Company::$rules);
+        $rules = [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:companys,email,'.$company->id,
+            // Agrega más reglas si es necesario
+        ];
+
+        $request->validate($rules);
 
         $company->update($request->all());
 
@@ -102,7 +106,8 @@ class companyController extends Controller
      */
     public function destroy($id)
     {
-        $company = Company::find($id)->delete();
+        $company = Company::find($id);
+        $company->delete();
 
         return redirect()->route('companys.index')
             ->with('success', 'Company deleted successfully');
