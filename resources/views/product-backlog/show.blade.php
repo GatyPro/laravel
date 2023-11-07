@@ -14,7 +14,7 @@
                             <span class="card-title">{{ __('Show') }} Product Backlog</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('product-backlogs.index') }}"> {{ __('Back') }}</a>
+                            <a class="btn btn-primary" href="{{ route('product_backlogs.index') }}"> {{ __('Back') }}</a>
                         </div>
                     </div>
 
@@ -22,11 +22,11 @@
                         
                         <div class="form-group">
                             <strong>Nombre Productbacklog:</strong>
-                            {{ $productBacklog->nombre_productbacklog }}
+                            {{ $ProductBacklog->nombre_productbacklog }}
                         </div>
                         <div class="form-group">
                             <strong>Tarea:</strong>
-                            {{ $productBacklog->tarea }}
+                            {{ $ProductBacklog->tarea }}
                         </div>
 
                     </div>

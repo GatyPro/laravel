@@ -2,26 +2,40 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Models\Task;
 
+/**
+ * Class ProductBacklog
+ *
+ * @property $id
+ * @property $created_at
+ * @property $updated_at
+ * @property $nombre_productbacklog
+ * @property $tarea
+ *
+ * @package App
+ * @mixin \Illuminate\Database\Eloquent\Builder
+ */
 class ProductBacklog extends Model
 {
-    use HasFactory;
+    
+    protected $perPage = 20;
 
     /**
-     * Define la relación de muchos a muchos con la clase Task.
+     * Attributes that should be mass-assignable.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @var array
      */
-
-     protected $fillable=[
-        'nombre_productbacklog',
-        'tarea'
-     ];
+    protected $fillable = [
+      'nombre_productbacklog',
+      'tarea'
+    ];
 
     public function tasks()
     {
-        return $this->belongsToMany(Task::class);
+        return $this->belongsTo(Task::class);
     }
+
 }

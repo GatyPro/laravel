@@ -3,6 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use App\Models\Developer;
+use App\Models\Sprint;
+use App\Models\ProductBacklog;
 
 /**
  * Class Task
@@ -45,7 +50,7 @@ class Task extends Model
      */
     public function developer()
     {
-        return $this->hasOne('App\Models\Developer', 'id', 'developers_id');
+        return $this->belongsTo(Developer::class,'developers_id','id');
     }
 
     /**
@@ -53,7 +58,11 @@ class Task extends Model
      */
     public function sprint()
     {
-        return $this->hasOne('App\Models\Sprint', 'id', 'sprints_id');
+        return $this->belongsTo(Sprint::class, 'sprints_id', 'id');
+    }
+
+    public function productBacklog(){
+        return $this->belongsTo(ProductBacklog::class, 'tarea', 'id');
     }
 
 

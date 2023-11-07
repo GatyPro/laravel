@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Developer;
+use App\Models\Sprint;
 use App\Models\Task;
 use Illuminate\Http\Request;
 
@@ -31,8 +33,10 @@ class TaskController extends Controller
      */
     public function create()
     {
+        $sprint = Sprint::all();
         $task = new Task();
-        return view('task.create', compact('task'));
+        $dev = Developer::all();
+        return view('task.create', compact('task', 'dev', 'sprint'));
     }
 
     /**
@@ -72,9 +76,11 @@ class TaskController extends Controller
      */
     public function edit($id)
     {
+        $sprint = Sprint::all();
+        $dev = Developer::all();
         $task = Task::find($id);
 
-        return view('task.edit', compact('task'));
+        return view('task.edit', compact('task','dev','sprint'));
     }
 
     /**

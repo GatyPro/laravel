@@ -4,14 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\BurndownChart;
 use Illuminate\Http\Request;
-/**use App\Http\Requests\StoreBurndownChartRequest;
-use App\Http\Requests\UpdateBurndownChartRequest;
-**/
+
 /**
  * Class TaskController
  * @package App\Http\Controllers
  */
-class TaskController extends Controller
+class BurndownChartController extends Controller
 {
     /**
      * Display a listing of the resource.

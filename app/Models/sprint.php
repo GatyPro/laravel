@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Task;
 
 /**
  * Class Sprint
@@ -51,7 +52,7 @@ class Sprint extends Model
      */
     public function tasks()
     {
-        return $this->hasMany('App\Models\Task', 'sprints_id', 'id');
+        return $this->hasMany(Task::class, 'sprints_id', 'id');
     }
     
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ProductBacklog;
+use App\Models\Task;
 use Illuminate\Http\Request;
 
 /**
@@ -20,7 +21,7 @@ class ProductBacklogController extends Controller
     {
         $ProductBacklogs = ProductBacklog::paginate();
 
-        return view('ProductBacklog.index', compact('ProductBacklogs'))
+        return view('product-backlog.index', compact('ProductBacklogs'))
             ->with('i', (request()->input('page', 1) - 1) * $ProductBacklogs->perPage());
     }
 
@@ -31,8 +32,9 @@ class ProductBacklogController extends Controller
      */
     public function create()
     {
+        $task = Task::all();
         $ProductBacklog = new ProductBacklog();
-        return view('Product_backlog.create', compact('ProductBacklog'));
+        return view('product-backlog.create', compact('ProductBacklog', 'task'));
     }
 
     /**
@@ -43,11 +45,10 @@ class ProductBacklogController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(ProductBacklog::$rules);
 
         $ProductBacklog = ProductBacklog::create($request->all());
 
-        return redirect()->route('Product_backlogs.index')
+        return redirect()->route('product_backlogs.index')
             ->with('success', 'ProductBacklog created successfully.');
     }
 
@@ -61,7 +62,7 @@ class ProductBacklogController extends Controller
     {
         $ProductBacklog = ProductBacklog::find($id);
 
-        return view('ProductBacklog.show', compact('ProductBacklog'));
+        return view('product-backlog.show', compact('ProductBacklog'));
     }
 
     /**
@@ -72,9 +73,11 @@ class ProductBacklogController extends Controller
      */
     public function edit($id)
     {
+        $task = Task::all();
+
         $ProductBacklog = ProductBacklog::find($id);
 
-        return view('ProductBacklog.edit', compact('ProductBacklog'));
+        return view('product-backlog.edit', compact('ProductBacklog', 'task'));
     }
 
     /**
@@ -86,11 +89,14 @@ class ProductBacklogController extends Controller
      */
     public function update(Request $request, ProductBacklog $ProductBacklog)
     {
-        request()->validate(ProductBacklog::$rules);
+        request()->validate([
+            'nombre_productbacklog' => 'required',
+            'tarea' => 'required',
+        ]);
 
-        $task->update($request->all());
+        $ProductBacklog->update($request->all());
 
-        return redirect()->route('Product_backlog.index')
+        return redirect()->route('product_backlogs.index')
             ->with('success', 'ProductBacklog updated successfully');
     }
 
@@ -103,7 +109,7 @@ class ProductBacklogController extends Controller
     {
         $ProductBacklog = ProductBacklog::find($id)->delete();
 
-        return redirect()->route('Product_backlogs.index')
+        return redirect()->route('product_backlogs.index')
             ->with('success', 'ProductBacklog deleted successfully');
     }
 }

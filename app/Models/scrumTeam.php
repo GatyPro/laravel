@@ -2,60 +2,46 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class ScrumTeam
+ *
+ * @property $id
+ * @property $nombre
+ * @property $sprint_id
+ * @property $SprintActual
+ * @property $created_at
+ * @property $updated_at
+ *
+ * @property Sprint $sprint
+ * @package App
+ * @mixin \Illuminate\Database\Eloquent\Builder
+ */
 class ScrumTeam extends Model
 {
-    use HasFactory;
+    
+    static $rules = [
+		'sprint_id' => 'required',
+    ];
+
+    protected $perPage = 20;
 
     /**
-     * Define la relación de uno a uno con la clase ProductOwner.
+     * Attributes that should be mass-assignable.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @var array
      */
-    public function productOwner()
-    {
-        return $this->belongsTo(ProductOwner::class);
-    }
+    protected $fillable = ['nombre','sprint_id','SprintActual'];
+
 
     /**
-     * Define la relación de uno a uno con la clase ScrumMaster.
-     *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function scrumMaster()
+    public function sprint()
     {
-        return $this->hasOne(ScrumMaster::class);
+        return $this->hasOne('App\Sprint', 'id', 'sprint_id');
     }
+    
 
-    /**
-     * Define la relación de uno a muchos con la clase Developers.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function developers()
-    {
-        return $this->hasMany(Developers::class);
-    }
-
-    /**
-     * Define la relación de uno a muchos con la clase Sprint.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function sprints()
-    {
-        return $this->hasMany(Sprint::class);
-    }
-
-    /**
-     * Define la relación de uno a uno con la clase Company.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function company()
-    {
-        return $this->belongsTo(Company::class);
-    }
 }

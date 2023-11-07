@@ -11,7 +11,7 @@ use App\Http\Requests\UpdatescrumTeamRequest;
  * Class scrumTeamController
  * @package App\Http\Controllers
  */
-class scrumTeamController extends Controller
+class ScrumTeamController extends Controller
 {
     /**
      * Display a listing of the resource.

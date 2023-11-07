@@ -16,7 +16,7 @@
                         <span class="card-title">{{ __('Update') }} Product Backlog</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('product-backlogs.update', $productBacklog->id) }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('product_backlogs.update', $ProductBacklog->id) }}"  role="form" enctype="multipart/form-data">
                             {{ method_field('PATCH') }}
                             @csrf
 

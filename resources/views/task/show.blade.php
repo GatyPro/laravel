@@ -22,7 +22,7 @@
                         
                         <div class="form-group">
                             <strong>Sprints Id:</strong>
-                            {{ $task->sprints_id }}
+                            {{ $task->sprint->numero_sprint }}
                         </div>
                         <div class="form-group">
                             <strong>Description:</strong>
@@ -34,7 +34,7 @@
                         </div>
                         <div class="form-group">
                             <strong>Developers Id:</strong>
-                            {{ $task->developers_id }}
+                            {{ $task->developer->nombre_developer }}
                         </div>
 
                     </div>

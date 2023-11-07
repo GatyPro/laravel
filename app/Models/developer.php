@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\Task;
 
 /**
  * Class Developer
@@ -40,7 +42,7 @@ class Developer extends Model
      */
     public function tasks()
     {
-        return $this->hasMany('App\Models\Task', 'developers_id', 'id');
+        return $this->hasMany(Task::class, 'developers_id', 'id');
     }
     
 

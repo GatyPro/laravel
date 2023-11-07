@@ -2,27 +2,25 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class BurndownChart
  *
  * @property $id
- * @property $datosSeguimiento_BurdownChart
- * @property $productOwner
+ * @property $datosSeguimiento_BurndownChart
+ * @property $productOwner_id
  * @property $created_at
  * @property $updated_at
  *
- * @property ProductOwner $developer
+ * @property ProductOwner $productOwner
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
-
 class BurndownChart extends Model
 {
+    
     static $rules = [
-
 		'datosSeguimiento_BurndownChart' => 'required',
 		'productOwner_id' => 'required',
     ];
@@ -34,16 +32,16 @@ class BurndownChart extends Model
      *
      * @var array
      */
-    protected $fillable = ['datosSeguimiento_BurdownChart','productOwner_id'];
+    protected $fillable = ['datosSeguimiento_BurndownChart','productOwner_id'];
 
-     /**
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function productOwner()
     {
-        return $this->hasOne('App\Models\productOwner', 'id', 'productOwner_id');
+        return $this->hasOne('App\ProductOwner', 'id', 'productOwner_id');
     }
+    
+
 }
-
-
-

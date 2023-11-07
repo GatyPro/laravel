@@ -2,20 +2,39 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Company
+ *
+ * @property $id
+ * @property $nombre_company
+ * @property $direccion_company
+ * @property $contacto_company
+ * @property $created_at
+ * @property $updated_at
+ *
+ * @package App
+ * @mixin \Illuminate\Database\Eloquent\Builder
+ */
 class Company extends Model
 {
-    use HasFactory;
+    
+    static $rules = [
+		'nombre_company' => 'required',
+		'direccion_company' => 'required',
+		'contacto_company' => 'required',
+    ];
+
+    protected $perPage = 20;
 
     /**
-     * Define la relación de uno a uno con la clase ScrumTeam.
+     * Attributes that should be mass-assignable.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @var array
      */
-    public function scrumTeam()
-    {
-        return $this->hasOne(ScrumTeam::class);
-    }
+    protected $fillable = ['nombre_company','direccion_company','contacto_company'];
+
+
+
 }
