@@ -2,18 +2,18 @@
     <div class="box-body">
         
         <div class="form-group">
-            {{ Form::label('nombre_productOwner') }}
-            {{ Form::text('nombre_productOwner', $productOwner->nombre_productOwner, ['class' => 'form-control' . ($errors->has('nombre_productOwner') ? ' is-invalid' : ''), 'placeholder' => 'Nombre Productowner']) }}
+            {{ Form::label('nombre product Owner') }}
+            {{ Form::text('nombre_productOwner', $productOwner->nombre_productOwner, ['class' => 'form-control' . ($errors->has('nombre_productOwner') ? ' is-invalid' : ''), 'placeholder' => 'Nombre Product owner']) }}
             {!! $errors->first('nombre_productOwner', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('experiencia_productOwner') }}
-            {{ Form::text('experiencia_productOwner', $productOwner->experiencia_productOwner, ['class' => 'form-control' . ($errors->has('experiencia_productOwner') ? ' is-invalid' : ''), 'placeholder' => 'Experiencia Productowner']) }}
+            {{ Form::label('experiencia product Owner') }}
+            {{ Form::text('experiencia_productOwner', $productOwner->experiencia_productOwner, ['class' => 'form-control' . ($errors->has('experiencia_productOwner') ? ' is-invalid' : ''), 'placeholder' => 'Experiencia Product owner']) }}
             {!! $errors->first('experiencia_productOwner', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('contacto_productOwner') }}
-            {{ Form::text('contacto_productOwner', $productOwner->contacto_productOwner, ['class' => 'form-control' . ($errors->has('contacto_productOwner') ? ' is-invalid' : ''), 'placeholder' => 'Contacto Productowner']) }}
+            {{ Form::label('contacto product Owner') }}
+            {{ Form::number('contacto_productOwner', $productOwner->contacto_productOwner, ['class' => 'form-control' . ($errors->has('contacto_productOwner') ? ' is-invalid' : ''), 'placeholder' => 'Contacto Product owner']) }}
             {!! $errors->first('contacto_productOwner', '<div class="invalid-feedback">:message</div>') !!}
         </div>
 

@@ -17,7 +17,7 @@
                             </span>
 
                              <div class="float-right">
-                                <a href="{{ route('product-owners.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                <a href="{{ route('product_owners.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Create New') }}
                                 </a>
                               </div>
@@ -53,9 +53,8 @@
 											<td>{{ $productOwner->contacto_productOwner }}</td>
 
                                             <td>
-                                                <form action="{{ route('product-owners.destroy',$productOwner->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('product-owners.show',$productOwner->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('product-owners.edit',$productOwner->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
+                                                <form action="{{ route('product_owners.destroy',$productOwner->id) }}" method="POST">
+                                                    <a class="btn btn-sm btn-success" href="{{ route('product_owners.edit',$productOwner->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>

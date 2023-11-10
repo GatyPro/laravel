@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\ScrumMaster;
+use App\Models\ScrumMaster;
 use Illuminate\Http\Request;
 
 /**
