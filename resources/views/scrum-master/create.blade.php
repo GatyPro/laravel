@@ -16,7 +16,7 @@
                         <span class="card-title">{{ __('Create') }} Scrum Master</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('scrum-masters.store') }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('scrum_masters.store') }}"  role="form" enctype="multipart/form-data">
                             @csrf
 
                             @include('scrum-master.form')

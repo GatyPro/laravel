@@ -17,7 +17,7 @@
                             </span>
 
                              <div class="float-right">
-                                <a href="{{ route('scrum-masters.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                <a href="{{ route('scrum_masters.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Create New') }}
                                 </a>
                               </div>
@@ -36,9 +36,9 @@
                                     <tr>
                                         <th>No</th>
                                         
-										<th>Nombre Scrummaster</th>
-										<th>Certificacion Scrummaster</th>
-										<th>Contacto Scrummaster</th>
+										<th>Nombre Scrum master</th>
+										<th>Certificacion Scrum master</th>
+										<th>Contacto Scrum master</th>
 
                                         <th></th>
                                     </tr>
@@ -53,9 +53,8 @@
 											<td>{{ $scrumMaster->contacto_scrumMaster }}</td>
 
                                             <td>
-                                                <form action="{{ route('scrum-masters.destroy',$scrumMaster->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('scrum-masters.show',$scrumMaster->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('scrum-masters.edit',$scrumMaster->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
+                                                <form action="{{ route('scrum_masters.destroy',$scrumMaster->id) }}" method="POST">
+                                                    <a class="btn btn-sm btn-success" href="{{ route('scrum_masters.edit',$scrumMaster->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
