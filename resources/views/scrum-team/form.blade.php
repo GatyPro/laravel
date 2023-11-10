@@ -6,14 +6,18 @@
             {{ Form::text('nombre', $scrumTeam->nombre, ['class' => 'form-control' . ($errors->has('nombre') ? ' is-invalid' : ''), 'placeholder' => 'Nombre']) }}
             {!! $errors->first('nombre', '<div class="invalid-feedback">:message</div>') !!}
         </div>
-        <div class="form-group">
-            {{ Form::label('sprint_id') }}
-            {{ Form::text('sprint_id', $scrumTeam->sprint_id, ['class' => 'form-control' . ($errors->has('sprint_id') ? ' is-invalid' : ''), 'placeholder' => 'Sprint Id']) }}
-            {!! $errors->first('sprint_id', '<div class="invalid-feedback">:message</div>') !!}
+        <div class="form-group mb-3">
+            {!! Form::label('sprint_id', 'Sprint', ['class' => 'form-label']) !!}
+            {!! Form::select('sprint_id', $sprints->pluck('numero_sprint', 'id'), $scrumTeam->sprint_id, [
+            'class' => 'form-control',
+            ]) !!}
+            @error('tarea')
+            <span class="text-danger">Este campo es requerido</span>
+            @enderror
         </div>
         <div class="form-group">
             {{ Form::label('SprintActual') }}
-            {{ Form::text('SprintActual', $scrumTeam->SprintActual, ['class' => 'form-control' . ($errors->has('SprintActual') ? ' is-invalid' : ''), 'placeholder' => 'Sprintactual']) }}
+            {{ Form::number('SprintActual', $scrumTeam->SprintActual, ['class' => 'form-control' . ($errors->has('SprintActual') ? ' is-invalid' : ''), 'placeholder' => 'Sprintactual']) }}
             {!! $errors->first('SprintActual', '<div class="invalid-feedback">:message</div>') !!}
         </div>
 

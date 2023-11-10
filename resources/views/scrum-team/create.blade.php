@@ -16,7 +16,7 @@
                         <span class="card-title">{{ __('Create') }} Scrum Team</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('scrum-teams.store') }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('scrum_teams.store') }}"  role="form" enctype="multipart/form-data">
                             @csrf
 
                             @include('scrum-team.form')

@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\scrumTeam;
+use App\Models\ScrumTeam;
+use App\Models\Sprint;
 use Illuminate\Http\Request;
-use App\Http\Requests\StorescrumTeamRequest;
-use App\Http\Requests\UpdatescrumTeamRequest;
 
 /**
  * Class scrumTeamController
@@ -20,9 +19,9 @@ class ScrumTeamController extends Controller
      */
     public function index()
     {
-        $scrumTeams = scrumTeam::paginate();
+        $scrumTeams = ScrumTeam::paginate();
 
-        return view('scrumTeam.index', compact('scrumTeams'))
+        return view('scrum-team.index', compact('scrumTeams'))
             ->with('i', (request()->input('page', 1) - 1) * $scrumTeams->perPage());
     }
 
@@ -34,7 +33,8 @@ class ScrumTeamController extends Controller
     public function create()
     {
         $scrumTeam = new scrumTeam();
-        return view('scrumTeam.create', compact('scrumTeam'));
+        $sprints = Sprint::all();
+        return view('scrum-team.create', compact('scrumTeam', 'sprints'));
     }
 
     /**
@@ -45,25 +45,12 @@ class ScrumTeamController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(scrumTeam::$rules);
+        request()->validate(ScrumTeam::$rules);
 
-        $scrumTeam = scrumTeam::create($request->all());
+        $scrumTeam = ScrumTeam::create($request->all());
 
-        return redirect()->route('scrumTeams.index')
+        return redirect()->route('scrum_teams.index')
             ->with('success', 'scrumTeam created successfully.');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $scrumTeam = scrumTeam::find($id);
-
-        return view('scrumTeam.show', compact('scrumTeam'));
     }
 
     /**
@@ -74,9 +61,10 @@ class ScrumTeamController extends Controller
      */
     public function edit($id)
     {
-        $scrumTeam = scrumTeam::find($id);
+        $scrumTeam = ScrumTeam::find($id);
+        $sprints = Sprint::all();
 
-        return view('scrumTeam.edit', compact('scrumTeam'));
+        return view('scrum-team.edit', compact('scrumTeam','sprints'));
     }
 
     /**
@@ -88,11 +76,11 @@ class ScrumTeamController extends Controller
      */
     public function update(Request $request, scrumTeam $scrumTeam)
     {
-        request()->validate(scrumTeam::$rules);
+        request()->validate(ScrumTeam::$rules);
 
         $scrumTeam->update($request->all());
 
-        return redirect()->route('scrumTeams.index')
+        return redirect()->route('scrum_teams.index')
             ->with('success', 'scrumTeam updated successfully');
     }
 
@@ -105,7 +93,7 @@ class ScrumTeamController extends Controller
     {
         $scrumTeam = scrumTeam::find($id)->delete();
 
-        return redirect()->route('scrumTeams.index')
+        return redirect()->route('scrum_teams.index')
             ->with('success', 'scrumTeam deleted successfully');
     }
 }

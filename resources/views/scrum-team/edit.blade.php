@@ -16,7 +16,7 @@
                         <span class="card-title">{{ __('Update') }} Scrum Team</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('scrum-teams.update', $scrumTeam->id) }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('scrum_teams.update', $scrumTeam->id) }}" role="form" enctype="multipart/form-data">
                             {{ method_field('PATCH') }}
                             @csrf
 
