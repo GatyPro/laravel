@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\ProductOwner;
 
 /**
  * Class BurndownChart
@@ -40,7 +41,7 @@ class BurndownChart extends Model
      */
     public function productOwner()
     {
-        return $this->hasOne('App\ProductOwner', 'id', 'productOwner_id');
+        return $this->hasOne(ProductOwner::class, 'id', 'productOwner_id');
     }
     
 

@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\BurndownChart;
 use Illuminate\Http\Request;
+use App\Models\ProductOwner;
 
 /**
- * Class TaskController
+ * Class BurndownChartController
  * @package App\Http\Controllers
  */
 class BurndownChartController extends Controller
@@ -18,10 +19,10 @@ class BurndownChartController extends Controller
      */
     public function index()
     {
-        $tasks = Task::paginate();
+        $burndownCharts = BurndownChart::paginate();
 
-        return view('task.index', compact('tasks'))
-            ->with('i', (request()->input('page', 1) - 1) * $tasks->perPage());
+        return view('burndown-chart.index', compact('burndownCharts'))
+            ->with('i', (request()->input('page', 1) - 1) * $burndownCharts->perPage());
     }
 
     /**
@@ -31,8 +32,9 @@ class BurndownChartController extends Controller
      */
     public function create()
     {
-        $task = new Task();
-        return view('task.create', compact('task'));
+        $burndownChart = new BurndownChart();
+        $po = ProductOwner::all();
+        return view('burndown-chart.create', compact('burndownChart','po'));
     }
 
     /**
@@ -43,25 +45,12 @@ class BurndownChartController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(Task::$rules);
+        request()->validate(BurndownChart::$rules);
 
-        $task = Task::create($request->all());
+        $burndownChart = BurndownChart::create($request->all());
 
-        return redirect()->route('tasks.index')
-            ->with('success', 'Task created successfully.');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $task = Task::find($id);
-
-        return view('task.show', compact('task'));
+        return redirect()->route('burndown_charts.index')
+            ->with('success', 'Burndown Chart created successfully.');
     }
 
     /**
@@ -72,26 +61,27 @@ class BurndownChartController extends Controller
      */
     public function edit($id)
     {
-        $task = Task::find($id);
+        $burndownChart = BurndownChart::find($id);
+        $po = ProductOwner::all();
 
-        return view('task.edit', compact('task'));
+        return view('burndown-chart.edit', compact('burndownChart','po'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  Task $task
+     * @param  BurndownChart $burndownChart
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Task $task)
+    public function update(Request $request, BurndownChart $burndownChart)
     {
-        request()->validate(Task::$rules);
+        request()->validate(BurndownChart::$rules);
 
-        $task->update($request->all());
+        $burndownChart->update($request->all());
 
-        return redirect()->route('tasks.index')
-            ->with('success', 'Task updated successfully');
+        return redirect()->route('burndown_charts.index')
+            ->with('success', 'Burndown Chart updated successfully');
     }
 
     /**
@@ -101,9 +91,9 @@ class BurndownChartController extends Controller
      */
     public function destroy($id)
     {
-        $task = Task::find($id)->delete();
+        $burndownChart = BurndownChart::find($id)->delete();
 
-        return redirect()->route('tasks.index')
-            ->with('success', 'Task deleted successfully');
+        return redirect()->route('burndown_charts.index')
+            ->with('success', 'Burndown Chart deleted successfully');
     }
 }

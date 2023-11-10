@@ -16,7 +16,7 @@
                         <span class="card-title">{{ __('Update') }} Burndown Chart</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('burndown-charts.update', $burndownChart->id) }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('burndown_charts.update', $burndownChart->id) }}"  role="form" enctype="multipart/form-data">
                             {{ method_field('PATCH') }}
                             @csrf
 

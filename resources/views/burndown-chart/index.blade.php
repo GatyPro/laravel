@@ -17,7 +17,7 @@
                             </span>
 
                              <div class="float-right">
-                                <a href="{{ route('burndown-charts.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                <a href="{{ route('burndown_charts.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Create New') }}
                                 </a>
                               </div>
@@ -36,8 +36,8 @@
                                     <tr>
                                         <th>No</th>
                                         
-										<th>Datosseguimiento Burndownchart</th>
-										<th>Productowner Id</th>
+										<th>Datos seguimiento Burndown chart</th>
+										<th>Product owner Id</th>
 
                                         <th></th>
                                     </tr>
@@ -48,12 +48,11 @@
                                             <td>{{ ++$i }}</td>
                                             
 											<td>{{ $burndownChart->datosSeguimiento_BurndownChart }}</td>
-											<td>{{ $burndownChart->productOwner_id }}</td>
+											<td>{{ $burndownChart->productOwner->nombre_productOwner }}</td>
 
                                             <td>
-                                                <form action="{{ route('burndown-charts.destroy',$burndownChart->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('burndown-charts.show',$burndownChart->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('burndown-charts.edit',$burndownChart->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
+                                                <form action="{{ route('burndown_charts.destroy',$burndownChart->id) }}" method="POST">
+                                                    <a class="btn btn-sm btn-success" href="{{ route('burndown_charts.edit',$burndownChart->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>

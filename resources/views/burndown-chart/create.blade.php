@@ -16,7 +16,7 @@
                         <span class="card-title">{{ __('Create') }} Burndown Chart</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('burndown-charts.store') }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('burndown_charts.store') }}"  role="form" enctype="multipart/form-data">
                             @csrf
 
                             @include('burndown-chart.form')
