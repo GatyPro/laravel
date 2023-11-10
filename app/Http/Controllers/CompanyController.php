@@ -38,30 +38,12 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        $rules = [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:companys',
-            // Agrega más reglas si es necesario
-        ];
-
-        $request->validate($rules);
+        request()->validate(Company::$rules);
 
         $company = Company::create($request->all());
 
-        return redirect()->route('company.index')
+        return redirect()->route('companies.index')
             ->with('success', 'Company created successfully.');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $company = Company::find($id);
-        return view('company.show', compact('company'));
     }
 
     /**
@@ -85,17 +67,11 @@ class CompanyController extends Controller
      */
     public function update(Request $request, Company $company)
     {
-        $rules = [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:companys,email,'.$company->id,
-            // Agrega más reglas si es necesario
-        ];
-
-        $request->validate($rules);
+        request()->validate(Company::$rules);
 
         $company->update($request->all());
 
-        return redirect()->route('companys.index')
+        return redirect()->route('companies.index')
             ->with('success', 'Company updated successfully');
     }
 
@@ -109,7 +85,7 @@ class CompanyController extends Controller
         $company = Company::find($id);
         $company->delete();
 
-        return redirect()->route('companys.index')
+        return redirect()->route('companies.index')
             ->with('success', 'Company deleted successfully');
     }
 }
